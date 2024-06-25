@@ -1,0 +1,15 @@
+baidu_aip==4.16.13
+edge_tts==6.1.11
+keras==2.6.0
+librosa==0.8.1
+numpy==1.19.5
+PyAudio==0.2.14
+pydub==0.25.1
+pygame==2.5.2
+PyQt5==5.15.10
+PyQt5_sip==12.13.0
+PyYAML==6.0.1
+PyYAML==6.0.1
+Requests==2.32.3
+tensorflow_gpu==2.6.0
+websocket_client==1.8.0
