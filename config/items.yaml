@@ -1,0 +1,66 @@
+#* 本文件用于存储gui界面的某些items
+
+Engine:
+  - 百度
+  - Bert-Vits
+  - GPT-Vits
+  - Edge-tts
+百度:
+  度小宇: 1
+  度小美: 0
+  度逍遥-基础: 3
+  度丫丫: 4
+  # 度逍遥-精品: 5003
+  # 度小鹿: 5118
+  # 度博文: 106
+  # 度小童: 110
+  # 度小萌: 111
+  # 度米朵: 103
+  # 度小娇: 5
+Bert-Vits:
+  嘉然: jiaran
+  七海: nanami
+  塔菲: taffy
+  丁真: dingzhen
+  东雪莲: dongxuelian
+GPT-Vits:
+  蔡徐坤: cxk
+Edge-tts:
+  zh-TW-HsiaoChenNeural: zh-TW-HsiaoChenNeural
+  zh-TW-YunJheNeura: zh-TW-YunJheNeura
+  zh-TW-HsiaoYuNeural: zh-TW-HsiaoYuNeural
+  zh-HK-WanLungNeural: zh-HK-WanLungNeural
+  zh-HK-HiuMaanNeural: zh-HK-HiuMaanNeural
+  zh-HK-HiuGaaiNeural: zh-HK-HiuGaaiNeural
+  zh-CN-shaanxi-XiaoniNeural: zh-CN-shaanxi-XiaoniNeural
+  zh-CN-liaoning-XiaobeiNeural: zh-CN-liaoning-XiaobeiNeural
+  zh-CN-YunyangNeural: zh-CN-YunyangNeural
+  zh-CN-YunxiaNeural: zh-CN-YunxiaNeural
+  zh-CN-YunxiNeural: zh-CN-YunxiNeural
+  zh-CN-YunjianNeural: zh-CN-YunjianNeural
+  zh-CN-XiaoyiNeural: zh-CN-XiaoyiNeural
+  zh-CN-XiaoxiaoNeural: zh-CN-XiaoxiaoNeural
+  ja-JP-NanamiNeural: ja-JP-NanamiNeural
+  ja-JP-KeitaNeural: ja-JP-KeitaNeural
+  en-US-BrianNeural: en-US-BrianNeural
+  en-US-EmmaNeural: en-US-EmmaNeural
+  en-US-MichelleNeural: en-US-MichelleNeural
+Language:
+  百度:
+    - 中英混合模式
+  Bert-Vits:
+    汉语: ZH
+    日语: JP
+    英语: EN
+  GPT-Vits:
+    汉语: 中文
+    日语: 日文
+    英语: 英文
+  Edge-tts:
+    - 东北话
+    - 台湾话
+    - 香港话
+    - 普通话
+    - 陕西话
+    - 日语
+    - 英语

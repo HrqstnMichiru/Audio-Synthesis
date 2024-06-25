@@ -1,0 +1,203 @@
+#? 本文件用于存储语音合成配置内容
+
+header:
+  User-Agent:
+    Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0
+  Cookie: 
+     cna=s2miHqXqwj8BASABDah4jZIc; csrf_session=MTcxMzA3NzE3MXxEdi1CQkFFQ180SUFBUkFCRUFBQU12LUNBQUVHYzNSeWFXNW5EQW9BQ0dOemNtWlRZV3gwQm5OMGNtbHVad3dTQUJCTFdtaEdWVTR3ZWtGNGJVdFNPREpvfKn8hm51afTOWIp6so5JZMK3vifAjPpeOcM7nQ8S1Jv8; csrf_token=Fe9O-cfQdMy-aCeDeEhBuGmv6Fg%3D; ajs_anonymous_id=6b6edd42-b366-4e81-81d8-986300e639f2; t=a437d794b0236c516dcd708a584f5972; m_session_id=645912d1-12a5-45a2-9bb9-132d149470c2; h_uid=2217771190993; xlly_s=1; _xsrf=2|923ec94f|a3b0960d7ab61d1b159c55fa6e395dfa|1714226233; _ga_R1FN4KJKJH=GS1.1.1714226445.9.0.1714226445.0.0.0; _ga=GA1.2.1270679200.1713077582; _gid=GA1.2.815961880.1714226446; tfstk=fFWZf0qVFReZZRCD8e928PkJfkv9YLU7ItTXmijDfFYiCAgcTw_dh1_X5E7VDaRcCi9Monj5rGT65dm0iN7KCZ9gixRc2elAXEL9twSc4CO_6IwmX97rhAaT6iD2hK47P8w5XlpvnzGaj386WnIHoQo-JDs9HK4IAxV7UGQy81lTgKqeKnt-oKxMmkRHcnJmIIDit2YpmKYcoCvHx3tjjxYDneDQeEYSL3RgWanz4RP8EdYljFj1j9jrPUjM8xDD7hRZZGYEnxXF9K1LrFV-AEp6Wt-Nk8H9II5Rcn7aQAbV29Qexa2qFFjdV_OOISMWadTwgOb4uj-NNN7vSG0is3Jw7QXM90rcvIfFLd6gkbICYFAyd6NL5I9N7_LJsWUduM81oORn7yTfNM6MTa4ILZdVwitV7RkGrgymkHqtntEGmjRMvH87YkmNT5TzxoLVjjhv66KePlEtMjdMvH87YklxMCCpYUZTX; isg=BI2N511y10G-G3NbRBm5r2DqnKkHasE8XeSnCs8ShyT1xq14lbhIDNYeNFqgBtn0
+Bert-Vits:
+  dingzhen:
+    data:
+      data:
+        - null
+        - 丁真
+        - 0.5
+        - 0.5
+        - 0.9
+        - 1
+        - ZH
+        - null
+        - Happy
+        - Text prompt
+        - null
+        - 0.7
+      dataType:
+        - textbox
+        - dropdown
+        - slider
+        - slider
+        - slider
+        - slider
+        - dropdown
+        - audio
+        - textbox
+        - radio
+        - textbox
+        - slider
+      event_data: null
+      fn_index: 0
+      session_hash: dx3n3r0izxd
+    url1: https://www.modelscope.cn/api/v1/studio/xzjosh/DZ-Bert-VITS2-2.3/gradio/run/predict?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FDZ-Bert-VITS2-2.3%2Fgradio%2F&sdk_version=3.47.1&t=1713112960923&studio_token=8cffdcb1-ef3b-490d-9bb0-7f338e1916c1
+    url2: https://www.modelscope.cn/api/v1/studio/xzjosh/DZ-Bert-VITS2-2.3/gradio/file=
+  dongxuelian:
+    data:
+      data:
+        - null
+        - 东雪莲
+        - 0.5
+        - 0.5
+        - 0.9
+        - 1
+        - ZH
+        - null
+        - Happy
+        - Text prompt
+        - null
+        - 0.7
+      dataType:
+        - textbox
+        - dropdown
+        - slider
+        - slider
+        - slider
+        - slider
+        - dropdown
+        - audio
+        - textbox
+        - radio
+        - textbox
+        - slider
+      event_data: null
+      fn_index: 0
+      session_hash: nsrsimjt4cg
+    url1: https://www.modelscope.cn/api/v1/studio/xzjosh/Azuma-Bert-VITS2-2.3/gradio/run/predict?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FAzuma-Bert-VITS2-2.3%2Fgradio%2F&sdk_version=3.47.1&t=1713112681921&studio_token=820fec64-2f71-41b0-81eb-66ef9392d4af
+    url2: https://www.modelscope.cn/api/v1/studio/xzjosh/Azuma-Bert-VITS2-2.3/gradio/file=
+  jiaran:
+    data:
+      data:
+        - null
+        - 嘉然
+        - 0.5
+        - 0.5
+        - 0.9
+        - 1
+        - ZH
+        - null
+        - Happy
+        - Text prompt
+        - null
+        - 0.7
+      dataType:
+        - textbox
+        - dropdown
+        - slider
+        - slider
+        - slider
+        - slider
+        - dropdown
+        - audio
+        - textbox
+        - radio
+        - textbox
+        - slider
+      event_data: null
+      fn_index: 0
+      session_hash: ontnbpkyz4
+    url1: https://www.modelscope.cn/api/v1/studio/xzjosh/Diana-Bert-VITS2-2.3/gradio/run/predict?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FDiana-Bert-VITS2-2.3%2Fgradio%2F&sdk_version=3.47.1&t=1714230825225
+    url2: https://www.modelscope.cn/api/v1/studio/xzjosh/Diana-Bert-VITS2-2.3/gradio/file=
+  nanami:
+    data:
+      data:
+        - null
+        - 七海
+        - 0.5
+        - 0.5
+        - 0.9
+        - 1
+        - ZH
+        - null
+        - Happy
+        - Text prompt
+        - null
+        - 0.7
+      dataType:
+        - textbox
+        - dropdown
+        - slider
+        - slider
+        - slider
+        - slider
+        - dropdown
+        - audio
+        - textbox
+        - radio
+        - textbox
+        - slider
+      event_data: null
+      fn_index: 0
+      session_hash: g41nj9y0mv8
+    url1: https://www.modelscope.cn/api/v1/studio/xzjosh/Nana7mi-Bert-VITS2-2.3/gradio/run/predict?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FNana7mi-Bert-VITS2-2.3%2Fgradio%2F&sdk_version=3.47.1&t=1713109794431&studio_token=03c205db-aa94-47bd-88a4-6f5507397ed3
+    url2: https://www.modelscope.cn/api/v1/studio/xzjosh/Nana7mi-Bert-VITS2-2.3/gradio/file=
+  taffy:
+    data:
+      data:
+        - null
+        - 永雏塔菲
+        - 0.5
+        - 0.6
+        - 0.9
+        - 1
+        - ZH
+        - null
+        - Happy
+        - Text prompt
+        - null
+        - 0.7
+      dataType:
+        - textbox
+        - dropdown
+        - slider
+        - slider
+        - slider
+        - slider
+        - dropdown
+        - audio
+        - textbox
+        - radio
+        - textbox
+        - slider
+      event_data: null
+      fn_index: 0
+      session_hash: myihsl9umc8
+    url1: https://www.modelscope.cn/api/v1/studio/xzjosh/Taffy-Bert-VITS2-2.3/gradio/run/predict?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FTaffy-Bert-VITS2-2.3%2Fgradio%2F&sdk_version=3.47.1&t=1713112354586&studio_token=c819752f-1089-48d1-bce6-86d998986266
+    url2: https://www.modelscope.cn/api/v1/studio/xzjosh/Taffy-Bert-VITS2-2.3/gradio/file=
+Baidu:
+  APP_ID: "60410516"
+  API_KEY: pSPJmsP5PK0PRQXpiMBWE1B3
+  SECRET_KEY: qTvxBsbh6CobmTa1dBj1dVuN20DD33GW
+GPT-Vits:
+  cxk:
+    msg1:
+      fn_index: 1
+      session_hash: d8sps0mzvnn
+    msg2:
+      data: 
+        - 喜欢唱、跳、如啊、篮球，缪贼客。
+        - 喜欢唱、跳、如啊、篮球，缪贼客。
+        - 中文
+        - null
+        - 中文
+        - 不切
+      event_data: null
+      fn_index: 1
+      session_hash: d8sps0mzvnn
+      dataType: 
+        - dropdown
+        - textbox
+        - dropdown
+        - textbox
+        - dropdown
+        - radio
+    url1: wss://www.modelscope.cn/api/v1/studio/xzjosh/Kun-GPT-SoVITS/gradio/queue/join?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FKun-GPT-SoVITS%2Fgradio%2F&sdk_version=3.47.1&t=1714671512388&studio_token=f9eaf8c3-9825-414b-a4ec-19596ce8b7f8
+    url2: https://www.modelscope.cn/api/v1/studio/xzjosh/Kun-GPT-SoVITS/gradio/file=
+
