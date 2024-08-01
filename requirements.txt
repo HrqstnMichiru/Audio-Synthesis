@@ -9,7 +9,6 @@ pygame==2.5.2
 PyQt5==5.15.10
 PyQt5_sip==12.13.0
 PyYAML==6.0.1
-PyYAML==6.0.1
 Requests==2.32.3
 tensorflow_gpu==2.6.0
 websocket_client==1.8.0

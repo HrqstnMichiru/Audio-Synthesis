@@ -1,8 +1,17 @@
-import tensorflow as tf
-from keras.layers import Dense,Conv1D,GlobalAveragePooling1D,Dropout,AveragePooling1D,BatchNormalization,Dropout
+import warnings
+
 import keras
-import warnings 
-warnings.filterwarnings('ignore',category=UserWarning)
+import tensorflow as tf
+from keras.layers import (
+    AveragePooling1D,
+    BatchNormalization,
+    Conv1D,
+    Dense,
+    Dropout,
+    GlobalAveragePooling1D,
+)
+
+warnings.filterwarnings("ignore", category=UserWarning)
 
 
 def pad_layer(inp, layer, pad_type="REFLECT"):
@@ -11,13 +20,13 @@ def pad_layer(inp, layer, pad_type="REFLECT"):
         pad = [
             [0, 0],
             [kernel_size // 2, kernel_size // 2 - 1],
-            [0,0],
+            [0, 0],
         ]
     else:
         pad = [
             [0, 0],
             [kernel_size // 2, kernel_size // 2],
-            [0,0],
+            [0, 0],
         ]
     # padding
     inp = tf.pad(inp, paddings=pad, mode=pad_type)
@@ -26,7 +35,7 @@ def pad_layer(inp, layer, pad_type="REFLECT"):
     return out
 
 
-def conv_bank(x, act, module_list , pad_type="reflect"):
+def conv_bank(x, act, module_list, pad_type="reflect"):
     outs = []
     for layer in module_list:
         out = act(pad_layer(x, layer, pad_type))
@@ -55,25 +64,29 @@ class SpeakerEncoder(keras.Model):
         self.c_h = c_h
         self.c_out = c_out
         self.kernel_size = kernel_size
-        self.act=tf.nn.relu
+        self.act = tf.nn.relu
         self.n_conv_blocks = n_conv_blocks
         self.n_dense_blocks = n_dense_blocks
         self.subsample = subsample
-        self.conv_bank =[Conv1D(c_bank, kernel_size=k) for k in range(bank_scale, bank_size + 1, bank_scale)]
+        self.conv_bank = [
+            Conv1D(c_bank, kernel_size=k)
+            for k in range(bank_scale, bank_size + 1, bank_scale)
+        ]
         self.in_conv_layer = Conv1D(c_h, kernel_size=1)
-        self.first_conv_layers = [Conv1D(c_h, kernel_size=kernel_size) for _ \
-                in range(n_conv_blocks)]
+        self.first_conv_layers = [
+            Conv1D(c_h, kernel_size=kernel_size) for _ in range(n_conv_blocks)
+        ]
         self.second_conv_layers = [
             Conv1D(c_h, kernel_size=kernel_size, strides=sub)
             for sub, _ in zip(subsample, range(n_conv_blocks))
         ]
-        self.pooling_layer = GlobalAveragePooling1D('channels_last')
+        self.pooling_layer = GlobalAveragePooling1D("channels_last")
         self.first_dense_layers = [Dense(c_h) for _ in range(n_dense_blocks)]
-        self.second_dense_layers = [Dense( c_h) for _ in range(n_dense_blocks)]
+        self.second_dense_layers = [Dense(c_h) for _ in range(n_dense_blocks)]
         self.output_layer = Dense(c_out)
-        self.batchNorm=BatchNormalization()
-        self.drop_layer=Dropout(dropout_rate)
-        self.cls_layer  = Dense(num_class,activation='softmax')
+        self.batchNorm = BatchNormalization()
+        self.drop_layer = Dropout(dropout_rate)
+        self.cls_layer = Dense(num_class, activation="softmax")
 
     def conv_blocks(self, inp):
         out = inp
@@ -88,9 +101,7 @@ class SpeakerEncoder(keras.Model):
             # y = self.drop_layer(y)
             y = self.act(y)
             if self.subsample[l] > 1:
-                out = AveragePooling1D(
-                    pool_size=self.subsample[l], padding="same"
-                )(out)
+                out = AveragePooling1D(pool_size=self.subsample[l], padding="same")(out)
             out = y + out
         return out
 
@@ -109,7 +120,7 @@ class SpeakerEncoder(keras.Model):
 
     def call(self, x):
         # print("--- spk encoder ---")
-        out = conv_bank(x, self.act,self.conv_bank)
+        out = conv_bank(x, self.act, self.conv_bank)
         out = self.act(out)
         # dimension reduction layer
         out = pad_layer(out, self.in_conv_layer)
@@ -134,30 +145,30 @@ class SpeakerEncoder(keras.Model):
 
     def look_shape_forward(self, x):
         print("--- spk encoder ---")
-        print("输入数据维度:x",x.shape)
-        out = conv_bank(x,self.act,self.conv_bank)
+        print("输入数据维度:x", x.shape)
+        out = conv_bank(x, self.act, self.conv_bank)
         # dimension reduction layer
         out = pad_layer(out, self.in_conv_layer)
         out = self.act(out)
-        print("经过conv bank",out.shape)
+        print("经过conv bank", out.shape)
         # conv blocks
         out = self.conv_blocks(out)
-        print("经过多个卷积层：",out.shape)
+        print("经过多个卷积层：", out.shape)
         # avg pooling
         print(out.shape)
         out = self.pooling_layer(out)
         print(out.shape)
-        print("经过一个时间维度的池化层：",out.shape)
+        print("经过一个时间维度的池化层：", out.shape)
 
         print(out.shape)
         # dense blocks
         out = self.dense_blocks(out)
-        print("经过多个线性层：",out.shape)
+        print("经过多个线性层：", out.shape)
         out = self.output_layer(out)
         print("经过输出层：", out.shape)
         # print("---")
         out = self.cls_layer(out)
-        print("经过分类层：",out.shape)
+        print("经过分类层：", out.shape)
         return out
 
 
@@ -176,8 +187,8 @@ def testmodel():
             "n_conv_blocks": 6,
             "n_dense_blocks": 3,
             "subsample": [1, 2, 1, 2, 1, 2],  ## 下采样的主要功能：缩小时间帧
-            "dropout_rate":0.5,
-            "num_class": 10,##这里改类别数
+            "dropout_rate": 0.5,
+            "num_class": 10,  ##这里改类别数
         }
     }
     speaker_clsmodel = SpeakerEncoder(
@@ -185,7 +196,7 @@ def testmodel():
     )  ## 模型的定义
     speaker_clsmodel.build(input_shape=(None, 64, 128))
     speaker_clsmodel.summary()
-    a = tf.random.normal(shape=(3, 64,128))  ## 输入 频谱特征
+    a = tf.random.normal(shape=(3, 64, 128))  ## 输入 频谱特征
 
     # out = speaker_clsmodel(a)  ## 输入给模型
     out = speaker_clsmodel.look_shape_forward(a)
