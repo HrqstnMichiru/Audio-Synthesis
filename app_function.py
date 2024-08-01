@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-import sys
-from PyQt5.QtCore import pyqtSignal, QThread
-import time
-import pygame
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
-from model import audioModel
 import json
 import os
 import pickle
-from audioModel import SpeakerEncoder
+import sys
+import time
+
 import librosa
 import numpy as np
 import pyaudio
+import pygame
+from PyQt5.QtCore import QThread, pyqtSignal
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
+
+from audioModel import SpeakerEncoder
+from model import audioModel
 
 model_params_config = {
     "SpeakerEncoder": {
@@ -98,14 +100,15 @@ def wav_to_mel(wavpath=None, data=None, sr=None):  # 计算log FBank特征
 
 class audioRecognition(QThread):
     audiosignal = pyqtSignal(int)
-    audioplaysignal=pyqtSignal(str)
-    def __init__(self, audioModel, mode, parent=None, state=None,path=None):
+    audioplaysignal = pyqtSignal(str)
+
+    def __init__(self, audioModel, mode, parent=None, state=None, path=None):
         super().__init__(parent)
         self.path = path
         self.audioModel = audioModel
         self.parent = parent
         self.mode = mode
-        self.state=state
+        self.state = state
 
     def run(self):
         if self.mode == 1:
@@ -142,15 +145,15 @@ class audioRecognition(QThread):
                         self.parent.lineEdit_2.setText(result)
                         print(result)
                         if self.state:
-                            if result=='left':
-                                self.audioplaysignal.emit('left')
-                            elif result=='right':
-                                self.audioplaysignal.emit('right')
-                            elif result=='stop':
+                            if result == "left":
+                                self.audioplaysignal.emit("left")
+                            elif result == "right":
+                                self.audioplaysignal.emit("right")
+                            elif result == "stop":
                                 self.audioplaysignal.emit("stop")
-                            elif result=='go':
-                                self.audioplaysignal.emit('go')
-                            elif result=='off':
+                            elif result == "go":
+                                self.audioplaysignal.emit("go")
+                            elif result == "off":
                                 self.audioplaysignal.emit("off")
                 elif stop_status == 0:
                     print("stop recording......")
@@ -220,7 +223,7 @@ class emitStr(QThread):
         self.args = args
 
     def run(self):
-        if self.args == None:
+        if self.args is None:
             self.target()
         else:
             self.target(self.args)
@@ -235,7 +238,7 @@ class callBack:
         self.audioModel.load_weights("./config/model_16_0.92.h5", by_name=True)
         self.savepath = None
         self.COUNT = -1
-        self.out=sys.stdout.write
+        self.out = sys.stdout.write
 
     def onComboBoxIndexChanged(self):
         index = self.obj.comboBox.currentIndex()
@@ -312,7 +315,7 @@ class callBack:
         print("", end="\n")
         print("支持的角色:")
         [print(i[0]) for i in items["Edge-tts"].items()]
-        sys.stdout.write=self.out
+        sys.stdout.write = self.out
         self.obj.pushButton_3.setEnabled(True)
 
     def printToTextBrowser(self, message):
@@ -332,7 +335,7 @@ class callBack:
         print("音量：", f'{info["dB"]:.3f}dB')
         print("最大振幅：", info["max_value"])
         print()
-        sys.stdout.write=self.out
+        sys.stdout.write = self.out
 
     def onPushButton_2Clicked(self):
         sys.stdout.write = self.printToTextBrowser_2
@@ -345,11 +348,11 @@ class callBack:
     def clearBrowser(self):
         self.obj.textBrowser.clear()
 
-    def onPushButtonClicked(self,flag):
+    def onPushButtonClicked(self, flag):
         if flag:
             text = self.obj.textEdit.toPlainText()
         else:
-            text=self.obj.lineEdit_2.text()
+            text = self.obj.lineEdit_2.text()
         print(text)
         if not text:
             QMessageBox.warning(
@@ -369,7 +372,7 @@ class callBack:
             savedir = "./audio/audio"
             savefile = increment_path(savedir)
             self.obj.lineEdit.setText(savefile)
-        if self.savepath != None:
+        if self.savepath is not None:
             savefile = self.savepath
             self.obj.lineEdit.setText(savefile)
         if self.engineIndex == 0:
@@ -454,7 +457,10 @@ class callBack:
 
     def onPushButton_9Clicked(self):
         path, _ = QFileDialog.getOpenFileName(
-            self.obj, "本地音频文件", "E:/New_PythonProjects/keras", "音频文件(*.mp3 *.wav)"
+            self.obj,
+            "本地音频文件",
+            "E:/New_PythonProjects/keras",
+            "音频文件(*.mp3 *.wav)",
         )
         if path:
             thread4 = audioRecognition(self.audioModel, 1, parent=self.obj, path=path)
@@ -464,7 +470,7 @@ class callBack:
         else:
             self.obj.statusBar.showMessage("未选择文件", 2000)
 
-    def audio_synthesis(self,msg):
+    def audio_synthesis(self, msg):
         print(msg)
         if self.obj.checkBox_5.isChecked():
             self.onPushButtonClicked(0)
@@ -476,7 +482,7 @@ class callBack:
         stop_status = 1
         print("开始语音识别")
         state = self.obj.checkBox_4.isChecked()
-        thread5 = audioRecognition(self.audioModel, 2, parent=self.obj,state=state)
+        thread5 = audioRecognition(self.audioModel, 2, parent=self.obj, state=state)
         thread5.audioplaysignal.connect(self.decisionTree)
         thread5.start()
         self.obj.statusBar.showMessage("语音识别开始", 2000)
@@ -484,30 +490,30 @@ class callBack:
     def onpushButton_10Clicked(self):
         global stop_status
         stop_status = 0
-        print('停止语音识别')
+        print("停止语音识别")
         self.obj.statusBar.showMessage("语音识别结束", 2000)
 
-    def decisionTree(self,msg):
+    def decisionTree(self, msg):
         print(msg)
-        maxCount=self.obj.listWidget.count()
-        if msg in ['right','left']:
-            if msg=='right':
-                if self.COUNT<maxCount:
-                    self.COUNT+=1
-            if msg=='left':
-                if self.COUNT>-1:
+        maxCount = self.obj.listWidget.count()
+        if msg in ["right", "left"]:
+            if msg == "right":
+                if self.COUNT < maxCount:
+                    self.COUNT += 1
+            if msg == "left":
+                if self.COUNT > -1:
                     self.COUNT -= 1
             print(self.COUNT)
-            self.obj.listWidget.setCurrentRow(self.COUNT) 
-            item=self.obj.listWidget.currentItem()
+            self.obj.listWidget.setCurrentRow(self.COUNT)
+            item = self.obj.listWidget.currentItem()
             path = item.text()
             self.thread3 = AudioPlay(path, self.obj)
             self.thread3.endsignal.connect(self.end)
             self.thread3.start()
             self.obj.statusBar.showMessage("正在播放语音!", msecs=2000)
-        if msg=='stop':
+        if msg == "stop":
             self.onPushButton_5Clicked()
-        if msg=='off':
+        if msg == "off":
             self.onpushButton_10Clicked()
-        if msg=='go':
+        if msg == "go":
             self.onPushButton_6Clicked()

@@ -91,28 +91,28 @@ class SpeakerEncoder(keras.Model):
     def conv_blocks(self, inp):
         out = inp
         # convolution blocks
-        for l in range(self.n_conv_blocks):
-            y = pad_layer(out, self.first_conv_layers[l])
+        for i in range(self.n_conv_blocks):
+            y = pad_layer(out, self.first_conv_layers[i])
             y = self.batchNorm(y)
             # y = self.drop_layer(y)
             y = self.act(y)
-            y = pad_layer(y, self.second_conv_layers[l])
+            y = pad_layer(y, self.second_conv_layers[i])
             y = self.batchNorm(y)
             # y = self.drop_layer(y)
             y = self.act(y)
-            if self.subsample[l] > 1:
-                out = AveragePooling1D(pool_size=self.subsample[l], padding="same")(out)
+            if self.subsample[i] > 1:
+                out = AveragePooling1D(pool_size=self.subsample[i], padding="same")(out)
             out = y + out
         return out
 
     def dense_blocks(self, inp):
         out = inp
         # dense layers
-        for l in range(self.n_dense_blocks):
-            y = self.first_dense_layers[l](out)
+        for i in range(self.n_dense_blocks):
+            y = self.first_dense_layers[i](out)
             y = self.act(y)
             y = self.drop_layer(y)
-            y = self.second_dense_layers[l](y)
+            y = self.second_dense_layers[i](y)
             y = self.act(y)
             y = self.drop_layer(y)
             out = y + out
@@ -200,6 +200,7 @@ def testmodel():
 
     # out = speaker_clsmodel(a)  ## 输入给模型
     out = speaker_clsmodel.look_shape_forward(a)
+    print(out.shape)
 
 
 if __name__ == "__main__":

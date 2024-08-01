@@ -4,3 +4,4 @@ __pycache__/
 /config/model_16_0.92.h5
 /demo.py
 .mypy_cache/
+audio/

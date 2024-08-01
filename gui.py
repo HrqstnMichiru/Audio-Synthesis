@@ -1,27 +1,28 @@
 # -*- coding: utf-8 -*-
-from Ui_main2 import Ui_MainWindow
-from PyQt5.QtWidgets import (
-    QApplication,
-    QMainWindow,
-    QDesktopWidget,
-    QWidget,
-    QStackedLayout,
-    QSlider,
-    QDoubleSpinBox,
-    QGroupBox,
-    QVBoxLayout,
-    QHBoxLayout,
-    QGridLayout,
-    QLabel,
-    QSpinBox,
-    QAbstractItemView,
-)
+import os
+import sys
+
+import yaml
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
-import sys
-import yaml
+from PyQt5.QtWidgets import (
+    QAbstractItemView,
+    QApplication,
+    QDesktopWidget,
+    QDoubleSpinBox,
+    QGridLayout,
+    QGroupBox,
+    QHBoxLayout,
+    QLabel,
+    QMainWindow,
+    QSlider,
+    QSpinBox,
+    QStackedLayout,
+    QVBoxLayout,
+    QWidget,
+)
+
 from app_function import callBack
-import os
 from Ui_main2 import Ui_MainWindow
 
 

@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
-import requests
+import asyncio
 import json
-import yaml
+import math
 import os
+
+import edge_tts
+import requests
+import websocket
+import yaml
+from aip import AipSpeech
 from pydub import AudioSegment
 from pydub.playback import play
-from aip import AipSpeech
-import edge_tts
-import asyncio
-import math
-import websocket
 
 
 class audioModel:
@@ -25,13 +26,13 @@ class audioModel:
 
     def setConfig(
         self,
-        text: str = None,
-        engine: str = None,
-        voice: str = None,
+        text=None,
+        engine=None,
+        voice=None,
         volume=None,
         rate=None,
         pitch=None,
-        language: str = None,
+        language=None,
     ):
         assert 0 <= len(text) < 200, "合成语音的文本长度应当大于0且小于200"
         self.text = text
@@ -134,7 +135,7 @@ class audioModel:
         audio.export(path, format="wav")
         os.remove("./audio/temp.mp3")
 
-    def generateAudio(self, path):
+    def generateAudio(self, path="./audio/audio.wav"):
         if self.engine == "Edge-tts":
             asyncio.run(self.model(path))
         else:
