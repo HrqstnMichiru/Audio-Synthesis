@@ -172,9 +172,9 @@ Bert-Vits:
     url1: https://www.modelscope.cn/api/v1/studio/xzjosh/Taffy-Bert-VITS2-2.3/gradio/run/predict?backend_url=%2Fapi%2Fv1%2Fstudio%2Fxzjosh%2FTaffy-Bert-VITS2-2.3%2Fgradio%2F&sdk_version=3.47.1&t=1713112354586&studio_token=c819752f-1089-48d1-bce6-86d998986266
     url2: https://www.modelscope.cn/api/v1/studio/xzjosh/Taffy-Bert-VITS2-2.3/gradio/file=
 Baidu:
-  APP_ID: "60410516"
-  API_KEY: pSPJmsP5PK0PRQXpiMBWE1B3
-  SECRET_KEY: qTvxBsbh6CobmTa1dBj1dVuN20DD33GW
+  APP_ID: ""
+  API_KEY: 
+  SECRET_KEY: 
 GPT-Vits:
   cxk:
     msg1:
